@@ -1,0 +1,149 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMenu } from "./menu-context";
+
+const navLinks = [
+  { label: "STYLING", href: "#styling" },
+  { label: "INFORMATION", href: "/information" },
+  { label: "INCREMENTS", href: "/increments" },
+  { label: "INQUIRY", href: "/inquiry" },
+];
+
+const allLinks = [
+  { label: "JASON OKOH", href: "/" },
+  ...navLinks,
+];
+
+export default function Header() {
+  const { menuOpen, setMenuOpen, stylingOpen, setStylingOpen, preloaderDone } = useMenu();
+  const pathname = usePathname();
+
+  const isDark = pathname === "/increments";
+
+  const bgColor = isDark ? "bg-foreground" : "bg-background";
+  const textColor = isDark ? "text-background" : "text-foreground";
+  const washColor = isDark ? "text-background/40" : "text-wash";
+
+  const handleDesktopLinkClick = (label: string, e: React.MouseEvent) => {
+    if (label === "STYLING") {
+      e.preventDefault();
+      setStylingOpen(!stylingOpen);
+    } else {
+      setStylingOpen(false);
+    }
+  };
+
+  const handleMobileLinkClick = (label: string, e: React.MouseEvent) => {
+    if (label === "STYLING") {
+      e.preventDefault();
+      setMenuOpen(false);
+      setTimeout(() => {
+        setStylingOpen(!stylingOpen);
+      }, 700);
+    } else {
+      setMenuOpen(false);
+      setStylingOpen(false);
+    }
+  };
+
+  const handleMenuToggle = () => {
+    if (menuOpen) {
+      setMenuOpen(false);
+    } else {
+      setMenuOpen(true);
+      if (stylingOpen) setStylingOpen(false);
+    }
+  };
+
+  return (
+    <>
+      <div
+        className={`md:hidden fixed inset-x-0 top-0 z-40 ${bgColor} overflow-hidden transition-[height,background-color] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "h-[50vh]" : "h-0"
+          }`}
+      >
+        <nav className="flex flex-col items-start gap-2 px-6 pt-6">
+          {allLinks.map((link, i) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname === link.href;
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleMobileLinkClick(link.label, e)}
+                className={`font-mono text-2xl font-bold transition-all hover:text-accent ${isActive ? washColor : textColor
+                  }`}
+                style={{
+                  transitionDuration: "600ms",
+                  transitionDelay: menuOpen ? `${i * 80}ms` : "0ms",
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? "translateY(0)" : "translateY(-12px)",
+                }}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+
+      <header
+        className={`fixed left-0 w-full z-50 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] md:bg-transparent ${menuOpen ? bgColor : isDark ? "bg-transparent" : "bg-background"
+          } ${menuOpen
+            ? "top-[50vh] -translate-y-full md:top-0 md:translate-y-0"
+            : "top-0 translate-y-0"
+          }`}
+      >
+        <div className="flex items-center justify-between px-6 py-5 md:px-10 lg:px-16">
+          <div className="hidden md:flex items-center justify-between w-full">
+            {allLinks.map((link, i) => {
+              const isNav = link.label !== "JASON OKOH";
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleDesktopLinkClick(link.label, e)}
+                  className={`font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-all hover:text-accent ${link.label === "STYLING" && stylingOpen
+                    ? "text-accent"
+                    : textColor
+                    }`}
+                  style={
+                    isNav
+                      ? {
+                        transitionDuration: "600ms",
+                        transitionDelay: preloaderDone ? `${i * 100}ms` : "0ms",
+                        opacity: preloaderDone ? 1 : 0,
+                        transform: preloaderDone ? "translateY(0)" : "translateY(-8px)",
+                      }
+                      : undefined
+                  }
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          <Link
+            href="/"
+            onClick={() => setStylingOpen(false)}
+            className={`md:hidden font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-colors hover:text-accent ${textColor}`}
+          >
+            JASON OKOH
+          </Link>
+          <button
+            onClick={handleMenuToggle}
+            className={`md:hidden font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-all duration-600 hover:text-accent ${textColor}`}
+            style={{
+              opacity: preloaderDone ? 1 : 0,
+              transform: preloaderDone ? "translateY(0)" : "translateY(-8px)",
+            }}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? "CLOSE" : "MENU"}
+          </button>
+        </div>
+      </header>
+    </>
+  );
+}
