@@ -16,7 +16,7 @@ export default function IncrementsPage() {
                 >
                     <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-700 ease-out cursor-pointer">
                         <Image
-                            src="/assets/images/hero-1.jpg"
+                            src="/assets/images/vol-one/vol-1-cover.webp"
                             alt="Increments Agency"
                             fill
                             className="object-contain object-left md:object-center"
