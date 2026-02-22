@@ -32,7 +32,7 @@ export default function IncrementsPage() {
                         className="max-w-xl space-y-6 md:space-y-8"
                     >
                         <p className="font-mono font-bold text-lg md:text-2xl lg:text-3xl leading-[1.0] tracking-tight">
-                            Increments is a creative practice dedicated to the art of refinement. We specialize in finding vulnerability in visual direction, styling, and brand identity, believing that significant impact is the result of small, deliberate, and continuous improvements.
+                            Jason launched Increments in 2025, his well rounded creative agency and production company to provide himself full creativity and space to fully express the ideas that weren&#39;t being brought to life. It&#39;s a full expression and insight into his mind, with his styling & directing being the focus in the imagery, assuring that there&#39;s something to leave with when being a witness to his work.
                         </p>
 
                         <div className="pt-1 md:pt-4">
