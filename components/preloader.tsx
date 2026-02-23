@@ -46,21 +46,21 @@ export default function Preloader() {
         }`}
     >
       <div className="flex flex-col items-start gap-1">
-        <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground">
+        <span className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground">
           JASON OKOH
         </span>
-        <span className="md:hidden font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground">
+        <span className="md:hidden font-mono text-[9px] font-bold tracking-normal uppercase text-foreground">
           STYLIST & DIRECTOR
         </span>
       </div>
 
-      <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
+      <span className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
         <span>{count}</span>
         <span className="mx-2 text-wash">—</span>
         <span>100</span>
       </span>
 
-      <span className="hidden md:block font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground">
+      <span className="hidden md:block font-mono text-[9px] font-bold tracking-normal uppercase text-foreground">
         STYLIST & DIRECTOR
       </span>
     </div>

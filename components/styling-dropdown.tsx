@@ -7,9 +7,11 @@ import { usePathname } from "next/navigation";
 import { useMenu } from "./menu-context";
 
 const stylingProjects = [
-  { id: "vol-1", title: "Vol. One", client: "Increments", image: "/assets/images/vol-one/vol-1-cover.webp" },
-  { id: "vol-2", title: "Vol. Two", client: "Increments", image: "/assets/images/vol-two/vol-2-cover.webp" },
-  { id: "vol-3", title: "Vol. Three", client: "Increments", image: "/assets/images/vol-three/vol-3-cover.webp" },
+  { id: "vol-1", title: "Jason Okoh", client: "Increments", image: "/assets/images/vol-one/vol-1-cover.webp" },
+  { id: "vol-2", title: "Marcos Pancho", client: "Increments", image: "/assets/images/vol-two/vol-2-cover.webp" },
+  { id: "vol-3", title: "Dvany Cruz", client: "Increments", image: "/assets/images/vol-three/vol-3-cover.webp" },
+  { id: "vol-4", title: "NME", client: "Increments", image: "/assets/images/vol-four/vol-4-cover.webp" },
+  { id: "vol-5", title: "Goddy Q", client: "INQWT", image: "/assets/images/vol-five/05-video.webm" },
 ];
 
 export default function StylingDropdown() {
@@ -59,11 +61,11 @@ export default function StylingDropdown() {
         )}
 
         <div className="flex justify-between w-full px-10 lg:px-16 pt-2 h-0 overflow-hidden">
-          <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase invisible">JASON OKOH</span>
-          <span ref={markerRef} className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase invisible">STYLING</span>
-          <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase invisible">EXPERTISE</span>
-          <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase invisible">INCREMENTS</span>
-          <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase invisible">INQUIRY</span>
+          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">JASON OKOH</span>
+          <span ref={markerRef} className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">STYLING</span>
+          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">EXPERTISE</span>
+          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">INCREMENTS</span>
+          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">INQUIRY</span>
         </div>
 
         <div
@@ -77,7 +79,7 @@ export default function StylingDropdown() {
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => setStylingOpen(false)}
-              className={`font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-colors duration-200 leading-loose ${hoveredIndex === null
+              className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-colors duration-200 leading-loose ${hoveredIndex === null
                 ? textColor
                 : hoveredIndex === i
                   ? textColor
@@ -96,7 +98,7 @@ export default function StylingDropdown() {
             key={i}
             href={`/projects/${project.id}`}
             onClick={() => setStylingOpen(false)}
-            className={`font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-colors duration-200 leading-loose ${hoveredIndex === null
+            className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-colors duration-200 leading-loose ${hoveredIndex === null
               ? textColor
               : hoveredIndex === i
                 ? textColor

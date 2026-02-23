@@ -103,7 +103,7 @@ export default function Header() {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleDesktopLinkClick(link.label, e)}
-                  className={`font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-all hover:text-accent ${link.label === "STYLING" && stylingOpen
+                  className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${link.label === "STYLING" && stylingOpen
                     ? "text-accent"
                     : textColor
                     }`}
@@ -127,13 +127,13 @@ export default function Header() {
           <Link
             href="/"
             onClick={() => setStylingOpen(false)}
-            className={`md:hidden font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-colors hover:text-accent ${textColor}`}
+            className={`md:hidden font-mono text-[9px] font-bold tracking-normal uppercase transition-colors hover:text-accent ${textColor}`}
           >
             JASON OKOH
           </Link>
           <button
             onClick={handleMenuToggle}
-            className={`md:hidden font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-all duration-600 hover:text-accent ${textColor}`}
+            className={`md:hidden font-mono text-[9px] font-bold tracking-normal uppercase transition-all duration-600 hover:text-accent ${textColor}`}
             style={{
               opacity: preloaderDone ? 1 : 0,
               transform: preloaderDone ? "translateY(0)" : "translateY(-8px)",

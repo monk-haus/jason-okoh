@@ -4,6 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { Project } from "@/lib/projects";
 
+function isVideo(src: string) {
+  return /\.(webm|mp4|mov)$/i.test(src);
+}
+
 export default function ProjectGallery({ project }: { project: Project }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [overviewOpen, setOverviewOpen] = useState(false);
@@ -47,13 +51,24 @@ export default function ProjectGallery({ project }: { project: Project }) {
                 }`}
             >
               <div className="relative w-full h-full">
-                <Image
-                  src={img}
-                  alt={`${project.title} ${i + 1}`}
-                  fill
-                  className="object-contain object-center"
-                  priority={i === 0}
-                />
+                {isVideo(img) ? (
+                  <video
+                    src={img}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-contain object-center"
+                  />
+                ) : (
+                  <Image
+                    src={img}
+                    alt={`${project.title} ${i + 1}`}
+                    fill
+                    className="object-contain object-center"
+                    priority={i === 0}
+                  />
+                )}
               </div>
             </div>
           ))}
@@ -63,14 +78,14 @@ export default function ProjectGallery({ project }: { project: Project }) {
           <div className="flex gap-4">
             <button
               onClick={() => setOverviewOpen(false)}
-              className={`font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-all hover:text-accent ${!overviewOpen ? "text-foreground" : "text-foreground/40"
+              className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${!overviewOpen ? "text-foreground" : "text-foreground/40"
                 }`}
             >
               GALLERY
             </button>
             <button
               onClick={() => setOverviewOpen(true)}
-              className={`font-mono text-[9px] font-bold tracking-[0.2em] uppercase transition-all hover:text-accent ${overviewOpen ? "text-foreground" : "text-foreground/40"
+              className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${overviewOpen ? "text-foreground" : "text-foreground/40"
                 }`}
             >
               OVERVIEW
@@ -78,10 +93,10 @@ export default function ProjectGallery({ project }: { project: Project }) {
           </div>
 
           <div className="flex flex-col items-end md:items-center md:absolute md:left-1/2 md:-translate-x-1/2">
-            <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-foreground/40 transition-colors">
+            <span className="font-mono text-[9px] font-bold tracking-normal text-foreground/40 transition-colors">
               {currentImage + 1} / {totalImages}
             </span>
-            <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground mt-1 transition-colors text-right md:text-center">
+            <span className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground mt-1 transition-colors text-right md:text-center">
               {project.title} — {project.client}
             </span>
           </div>
@@ -101,16 +116,24 @@ export default function ProjectGallery({ project }: { project: Project }) {
                 e.stopPropagation();
                 handleThumbnailClick(i);
               }}
-              className={`relative aspect-[3/4] overflow-hidden transition-opacity duration-200 ${i === currentImage ? "opacity-100" : "opacity-40 hover:opacity-100"
-                }`}
+              className="relative aspect-[3/4] overflow-hidden"
             >
-              <Image
-                src={img}
-                alt={`${project.title} thumbnail ${i + 1}`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 33vw, (max-width: 1200px) 20vw, 15vw"
-              />
+              {isVideo(img) ? (
+                <video
+                  src={img}
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-contain"
+                />
+              ) : (
+                <Image
+                  src={img}
+                  alt={`${project.title} thumbnail ${i + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 33vw, (max-width: 1200px) 20vw, 15vw"
+                />
+              )}
             </button>
           ))}
         </div>

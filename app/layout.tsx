@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto_Mono, Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/header";
 import StylingDropdown from "@/components/styling-dropdown";
 import Preloader from "@/components/preloader";
 import { MenuProvider } from "@/components/menu-context";
 
-const robotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono",
-  subsets: ["latin"],
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant-garamond",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+const nimbusSans = localFont({
+  src: [
+    { path: "../fonts/NimbusSanL-Reg.otf", weight: "400", style: "normal" },
+    { path: "../fonts/NimbusSanL-RegIta.otf", weight: "400", style: "italic" },
+    { path: "../fonts/NimbusSanL-Bol.otf", weight: "700", style: "normal" },
+    { path: "../fonts/NimbusSanL-BolIta.otf", weight: "700", style: "italic" },
+  ],
+  variable: "--font-nimbus-sans",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${robotoMono.variable} ${cormorantGaramond.variable} antialiased`}
+        className={`${nimbusSans.variable} antialiased`}
       >
         <MenuProvider>
           <Preloader />

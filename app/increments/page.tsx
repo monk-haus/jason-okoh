@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function IncrementsPage() {
     return (
-        <section className="w-full h-[100dvh] bg-foreground text-background overflow-y-auto md:overflow-hidden no-scrollbar relative">
+        <section className="w-full min-h-[100dvh] bg-foreground text-background overflow-y-auto md:overflow-hidden no-scrollbar relative overscroll-none">
             <div className="w-full min-h-full md:h-full max-w-[1600px] mx-auto px-6 md:px-12 pt-28 pb-12 md:py-0 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center relative z-10">
 
                 <motion.div

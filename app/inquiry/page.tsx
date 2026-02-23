@@ -18,23 +18,23 @@ export default function InquiryPage() {
                     </p>
 
                     <div className="pt-12 md:pt-16">
-                        <span className="block font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                        <span className="block font-mono text-[9px] font-bold tracking-normal uppercase text-foreground/40 mb-2">
                             EMAIL
                         </span>
                         <motion.a
-                            href="mailto:info@jasonokoh.com"
+                            href="mailto:jaseokoh@gmail.com"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             whileHover={{ opacity: 0.4 }}
                             transition={{ duration: 0.3 }}
                             className="inline-block font-mono font-bold text-2xl md:text-4xl lg:text-5xl tracking-tight cursor-pointer"
                         >
-                            info@jasonokoh.com
+                            jaseokoh@gmail.com
                         </motion.a>
                     </div>
 
                     <div className="pt-8 md:pt-12">
-                        <span className="block font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground/40 mb-2">
+                        <span className="block font-mono text-[9px] font-bold tracking-normal uppercase text-foreground/40 mb-2">
                             SOCIAL
                         </span>
                         <motion.a

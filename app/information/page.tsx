@@ -46,12 +46,12 @@ export default function InformationPage() {
 
                     <button
                         onClick={handleToggle}
-                        className="mt-6 font-mono font-bold text-sm tracking-widest uppercase text-foreground/30 hover:text-foreground transition-colors duration-300"
+                        className="mt-6 font-mono font-bold text-sm tracking-normal uppercase text-foreground/30 hover:text-foreground transition-colors duration-300"
                     >
                         {buttonText}
                     </button>
 
-                    <div className="pt-8 md:pt-12 flex flex-col gap-2">
+                    <div className="pt-8 md:pt-12 flex flex-row justify-between w-full">
                         <motion.a
                             href="https://instagram.com/jaseokoh"
                             target="_blank"

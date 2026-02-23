@@ -43,13 +43,26 @@ export default function Home() {
               transitionDelay: i === 0 ? "200ms" : "0ms",
             }}
           >
-            <Image
-              src={project.hero}
-              alt={project.title}
-              fill
-              className="object-contain object-center"
-              priority={i === 0}
-            />
+            <div className="absolute inset-y-0 inset-x-6 md:inset-x-0">
+              {/\.(webm|mp4|mov)$/i.test(project.hero) ? (
+                <video
+                  src={project.hero}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-contain object-center"
+                />
+              ) : (
+                <Image
+                  src={project.hero}
+                  alt={project.title}
+                  fill
+                  className="object-contain object-center"
+                  priority={i === 0}
+                />
+              )}
+            </div>
           </div>
 
           <div
@@ -62,16 +75,13 @@ export default function Home() {
           >
             <Link
               href={`/projects/${project.id}`}
-              className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground/40 transition-colors hover:text-accent"
+              className="font-mono text-xs font-bold tracking-normal text-foreground/40 transition-colors hover:text-accent"
             >
-              VIEW CASE
+              View
             </Link>
-            <h2 className="mt-4 font-mono text-[13px] font-bold tracking-[0.15em] uppercase text-foreground text-center">
-              {project.title}
+            <h2 className="mt-0.5 font-mono text-[13px] font-bold tracking-normal text-foreground text-center">
+              {project.title} for {project.client}
             </h2>
-            <p className="mt-1 font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-foreground text-center">
-              FOR {project.client}
-            </p>
           </div>
         </section>
       ))}
