@@ -11,7 +11,7 @@ const stylingProjects = [
   { id: "vol-2", title: "Marcos Pancho", client: "Increments", image: "/assets/images/vol-two/vol-2-cover.webp" },
   { id: "vol-3", title: "Dvany Cruz", client: "Increments", image: "/assets/images/vol-three/vol-3-cover.webp" },
   { id: "vol-4", title: "NME", client: "Increments", image: "/assets/images/vol-four/vol-4-cover.webp" },
-  { id: "vol-5", title: "Goddy Q", client: "INQWT", image: "/assets/images/vol-five/05-video.webm" },
+  { id: "vol-5", title: "Goddy Q", client: "INQWT", image: "/assets/images/vol-five/05-01.webp" },
 ];
 
 export default function StylingDropdown() {
