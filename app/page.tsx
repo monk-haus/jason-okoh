@@ -33,10 +33,10 @@ export default function Home() {
       {projects.map((project, i) => (
         <section
           key={i}
-          className="relative h-[100dvh] snap-start flex flex-col md:flex-row md:px-10 lg:px-16 pt-16 pb-6 gap-6 md:gap-0"
+          className="relative h-[100dvh] snap-start flex flex-col pt-16 pb-6 gap-6"
         >
           <div
-            className="relative flex-1 w-full md:h-full md:w-[65%] overflow-hidden flex items-center justify-center transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            className="relative flex-1 w-full overflow-hidden flex items-center justify-center transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
             style={{
               opacity: preloaderDone ? 1 : 0,
               transform: preloaderDone ? "translateY(0) scale(1)" : "translateY(30px) scale(0.98)",
@@ -66,7 +66,7 @@ export default function Home() {
           </div>
 
           <div
-            className="flex shrink-0 w-full md:w-[35%] md:h-full flex-col items-center justify-end pb-8 md:justify-center md:pb-0 transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            className="flex shrink-0 w-full flex-col items-center justify-end pb-8 transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
             style={{
               opacity: preloaderDone ? 1 : 0,
               transform: preloaderDone ? "translateY(0)" : "translateY(20px)",

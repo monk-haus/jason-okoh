@@ -47,7 +47,7 @@ export default function ProjectGallery({ project }: { project: Project }) {
           {project.images.map((img, i) => (
             <div
               key={i}
-              className={`absolute inset-0 flex items-center justify-center px-12 md:px-32 lg:px-48 pt-28 pb-8 transition-opacity duration-500 ${i === currentImage ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+              className={`absolute inset-0 flex items-center justify-center px-6 md:px-0 pt-28 pb-8 transition-opacity duration-500 ${i === currentImage ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
                 }`}
             >
               <div className="relative w-full h-full">

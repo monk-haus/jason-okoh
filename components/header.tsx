@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import { useMenu } from "./menu-context";
 
 const navLinks = [
-  { label: "STYLING", href: "#styling" },
-  { label: "INFORMATION", href: "/information" },
-  { label: "INCREMENTS", href: "/increments" },
-  { label: "INQUIRY", href: "/inquiry" },
+  { label: "Overview", href: "#overview" },
+  { label: "Information", href: "/information" },
+  { label: "Increments", href: "/increments" },
+  { label: "Inquiry", href: "/inquiry" },
 ];
 
 const allLinks = [
-  { label: "JASON OKOH", href: "/" },
+  { label: "Jason Okoh", href: "/" },
   ...navLinks,
 ];
 
@@ -27,7 +27,7 @@ export default function Header() {
   const washColor = isDark ? "text-background/40" : "text-wash";
 
   const handleDesktopLinkClick = (label: string, e: React.MouseEvent) => {
-    if (label === "STYLING") {
+    if (label === "Overview") {
       e.preventDefault();
       setStylingOpen(!stylingOpen);
     } else {
@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   const handleMobileLinkClick = (label: string, e: React.MouseEvent) => {
-    if (label === "STYLING") {
+    if (label === "Overview") {
       e.preventDefault();
       setMenuOpen(false);
       setTimeout(() => {
@@ -97,13 +97,13 @@ export default function Header() {
         <div className="flex items-center justify-between px-6 py-5 md:px-10 lg:px-16">
           <div className="hidden md:flex items-center justify-between w-full">
             {allLinks.map((link, i) => {
-              const isNav = link.label !== "JASON OKOH";
+              const isNav = link.label !== "Jason Okoh";
               return (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleDesktopLinkClick(link.label, e)}
-                  className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${link.label === "STYLING" && stylingOpen
+                  className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${link.label === "Overview" && stylingOpen
                     ? "text-accent"
                     : textColor
                     }`}
@@ -127,20 +127,20 @@ export default function Header() {
           <Link
             href="/"
             onClick={() => setStylingOpen(false)}
-            className={`md:hidden font-mono text-[9px] font-bold tracking-normal uppercase transition-colors hover:text-accent ${textColor}`}
+            className={`md:hidden font-mono text-[9px] font-bold tracking-normal transition-colors hover:text-accent ${textColor}`}
           >
-            JASON OKOH
+            Jason Okoh
           </Link>
           <button
             onClick={handleMenuToggle}
-            className={`md:hidden font-mono text-[9px] font-bold tracking-normal uppercase transition-all duration-600 hover:text-accent ${textColor}`}
+            className={`md:hidden font-mono text-[9px] font-bold tracking-normal transition-all duration-600 hover:text-accent ${textColor}`}
             style={{
               opacity: preloaderDone ? 1 : 0,
               transform: preloaderDone ? "translateY(0)" : "translateY(-8px)",
             }}
             aria-label="Toggle menu"
           >
-            {menuOpen ? "CLOSE" : "MENU"}
+            {menuOpen ? "Close" : "Menu"}
           </button>
         </div>
       </header>
