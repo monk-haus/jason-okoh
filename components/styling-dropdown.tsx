@@ -8,10 +8,10 @@ import { useMenu } from "./menu-context";
 
 const stylingProjects = [
   { id: "vol-4", title: "KidWild", client: "NME Magazine", image: "/assets/images/vol-four/vol-4-cover.webp" },
+  { id: "vol-3", title: "Dvany Cruz", client: "Increments Vol. 3", image: "/assets/images/vol-three/vol-3-cover.webp" },
+  { id: "vol-2", title: "Marcus Pancho", client: "Increments Vol. 2", image: "/assets/images/vol-two/vol-2-cover.webp" },
   { id: "vol-5", title: "Goddy Q", client: "IGQWT", image: "/assets/images/vol-five/05-01.webp" },
-  { id: "vol-3", title: "Dvany Cruz", client: "Increments", image: "/assets/images/vol-three/vol-3-cover.webp" },
-  { id: "vol-2", title: "Marcus Pancho", client: "Increments", image: "/assets/images/vol-two/vol-2-cover.webp" },
-  { id: "vol-1", title: "Jason Okoh", client: "Increments", image: "/assets/images/vol-one/vol-1-cover.webp" },
+  { id: "vol-1", title: "Jason Okoh", client: "Increments Vol. 1", image: "/assets/images/vol-one/vol-1-cover.webp" },
 ];
 
 export default function StylingDropdown() {
@@ -62,10 +62,10 @@ export default function StylingDropdown() {
 
         <div className="flex justify-between w-full px-10 lg:px-16 pt-2 h-0 overflow-hidden">
           <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">JASON OKOH</span>
-          <span ref={markerRef} className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">OVERVIEW</span>
-          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">EXPERTISE</span>
+          <span ref={markerRef} className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">STYLING</span>
+          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">LOOKBOOK</span>
           <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">INCREMENTS</span>
-          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">INQUIRY</span>
+          <span className="font-mono text-[9px] font-bold tracking-normal uppercase invisible">INFORMATION</span>
         </div>
 
         <div
@@ -86,7 +86,7 @@ export default function StylingDropdown() {
                   : washColor
                 }`}
             >
-              {project.title} — {project.client}
+              {project.title} for {project.client}
             </Link>
           ))}
         </div>
@@ -105,7 +105,7 @@ export default function StylingDropdown() {
                 : washColor
               }`}
           >
-            {project.title} — {project.client}
+            {project.title} for {project.client}
           </Link>
         ))}
       </nav>

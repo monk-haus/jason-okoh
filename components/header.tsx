@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { useMenu } from "./menu-context";
 
 const navLinks = [
-  { label: "Overview", href: "#overview" },
-  { label: "Information", href: "/information" },
+  { label: "Styling", href: "#styling" },
+  { label: "Lookbook", href: "/lookbook" },
   { label: "Increments", href: "/increments" },
-  { label: "Inquiry", href: "/inquiry" },
+  { label: "Information", href: "/information" },
 ];
 
 const allLinks = [
@@ -27,7 +27,7 @@ export default function Header() {
   const washColor = isDark ? "text-background/40" : "text-wash";
 
   const handleDesktopLinkClick = (label: string, e: React.MouseEvent) => {
-    if (label === "Overview") {
+    if (label === "Styling") {
       e.preventDefault();
       setStylingOpen(!stylingOpen);
     } else {
@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   const handleMobileLinkClick = (label: string, e: React.MouseEvent) => {
-    if (label === "Overview") {
+    if (label === "Styling") {
       e.preventDefault();
       setMenuOpen(false);
       setTimeout(() => {
@@ -63,7 +63,7 @@ export default function Header() {
         className={`md:hidden fixed inset-x-0 top-0 z-40 ${bgColor} overflow-hidden transition-[height,background-color] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "h-[50vh]" : "h-0"
           }`}
       >
-        <nav className="flex flex-col items-start gap-2 px-6 pt-6">
+        <nav className="flex flex-col items-start gap-0 px-6 pt-6">
           {allLinks.map((link, i) => {
             const isActive = link.href === "/" ? pathname === "/" : pathname === link.href;
             return (
@@ -71,7 +71,7 @@ export default function Header() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleMobileLinkClick(link.label, e)}
-                className={`font-mono text-2xl font-bold transition-all hover:text-accent ${isActive ? washColor : textColor
+                className={`font-mono text-xl font-bold tracking-normal leading-tight transition-all hover:text-accent ${isActive ? washColor : textColor
                   }`}
                 style={{
                   transitionDuration: "600ms",
@@ -103,7 +103,7 @@ export default function Header() {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleDesktopLinkClick(link.label, e)}
-                  className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${link.label === "Overview" && stylingOpen
+                  className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${link.label === "Styling" && stylingOpen
                     ? "text-accent"
                     : textColor
                     }`}

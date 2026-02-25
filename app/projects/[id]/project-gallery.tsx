@@ -75,33 +75,31 @@ export default function ProjectGallery({ project }: { project: Project }) {
         </div>
 
         <div className="relative z-20 flex items-end justify-between px-6 md:px-10 lg:px-16 pb-6 pt-4 shrink-0 bg-background">
-          <div className="flex gap-4">
-            <button
-              onClick={() => setOverviewOpen(false)}
-              className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${!overviewOpen ? "text-foreground" : "text-foreground/40"
-                }`}
-            >
-              GALLERY
-            </button>
-            <button
-              onClick={() => setOverviewOpen(true)}
-              className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${overviewOpen ? "text-foreground" : "text-foreground/40"
-                }`}
-            >
-              OVERVIEW
-            </button>
+          <div className="flex flex-col items-start gap-1">
+            <span className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground">
+              {project.title} for {project.client}
+            </span>
+            <div className="flex gap-4">
+              <button
+                onClick={() => setOverviewOpen(false)}
+                className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${!overviewOpen ? "text-foreground" : "text-foreground/40"
+                  }`}
+              >
+                GALLERY
+              </button>
+              <button
+                onClick={() => setOverviewOpen(true)}
+                className={`font-mono text-[9px] font-bold tracking-normal uppercase transition-all hover:text-accent ${overviewOpen ? "text-foreground" : "text-foreground/40"
+                  }`}
+              >
+                OVERVIEW
+              </button>
+            </div>
           </div>
 
-          <div className="flex flex-col items-end md:items-center md:absolute md:left-1/2 md:-translate-x-1/2">
-            <span className="font-mono text-[9px] font-bold tracking-normal text-foreground/40 transition-colors">
-              {currentImage + 1} / {totalImages}
-            </span>
-            <span className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground mt-1 transition-colors text-right md:text-center">
-              {project.title} — {project.client}
-            </span>
-          </div>
-
-          <div className="hidden md:block" />
+          <span className="font-mono text-[9px] font-bold tracking-normal text-foreground/40">
+            {currentImage + 1} / {totalImages}
+          </span>
         </div>
       </div>
       <div

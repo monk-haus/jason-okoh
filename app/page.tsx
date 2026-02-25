@@ -66,22 +66,22 @@ export default function Home() {
           </div>
 
           <div
-            className="flex shrink-0 w-full flex-col items-center justify-end pb-8 transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            className="flex shrink-0 w-full items-end justify-between pb-8 px-6 md:px-10 lg:px-16 transition-all duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
             style={{
               opacity: preloaderDone ? 1 : 0,
               transform: preloaderDone ? "translateY(0)" : "translateY(20px)",
               transitionDelay: i === 0 ? "400ms" : "0ms",
             }}
           >
+            <h2 className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground">
+              {project.title} for {project.client}
+            </h2>
             <Link
               href={`/projects/${project.id}`}
-              className="font-mono text-xs font-bold tracking-normal text-foreground/40 transition-colors hover:text-accent"
+              className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground/40 transition-colors hover:text-accent"
             >
               View
             </Link>
-            <h2 className="mt-0.5 font-mono text-[13px] font-bold tracking-normal text-foreground text-center">
-              {project.title} for {project.client}
-            </h2>
           </div>
         </section>
       ))}
