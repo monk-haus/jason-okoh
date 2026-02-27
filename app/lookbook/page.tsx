@@ -11,52 +11,47 @@ function getLookbookImage(project: (typeof projects)[0]): string {
 
 const textClass = "font-mono text-[9px] font-bold tracking-normal uppercase leading-none";
 
-const rows = [projects.slice(0, 4), projects.slice(4)].filter((g) => g.length > 0);
+const mobileRows = [projects.slice(0, 2), projects.slice(2, 4), projects.slice(4)].filter((g) => g.length > 0);
+const desktopRows = [projects.slice(0, 4), projects.slice(4)].filter((g) => g.length > 0);
+
+function ProjectRow({ group, cols, sizes, gap }: { group: typeof projects; cols: string; sizes: string; gap: string }) {
+  return (
+    <div className={`grid ${cols} ${gap}`}>
+      {group.map((project) => (
+        <Link key={`img-${project.id}`} href={`/projects/${project.id}`} className="group row-start-1 self-end">
+          <Image
+            src={getLookbookImage(project)}
+            alt={project.title}
+            width={0}
+            height={0}
+            sizes={sizes}
+            className="w-full h-auto transition-opacity duration-500 group-hover:opacity-80"
+          />
+        </Link>
+      ))}
+      {group.map((project) => (
+        <div key={`text-${project.id}`} className="row-start-2 pt-2 flex flex-col">
+          <span className={`${textClass} text-foreground`}>{project.title}</span>
+          <span className={`${textClass} text-foreground/40`}>{project.client}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function LookbookPage() {
   return (
     <main className="min-h-[100dvh] bg-background px-6 md:px-10 lg:px-16 pt-28 pb-16">
 
-      {/* Mobile: standard cards */}
-      <div className="grid grid-cols-2 gap-4 md:hidden">
-        {projects.map((project) => (
-          <Link key={project.id} href={`/projects/${project.id}`} className="group flex flex-col">
-            <Image
-              src={getLookbookImage(project)}
-              alt={project.title}
-              width={0}
-              height={0}
-              sizes="50vw"
-              className="w-full h-auto transition-opacity duration-500 group-hover:opacity-80"
-            />
-            <span className={`${textClass} text-foreground mt-1`}>{project.title}</span>
-            <span className={`${textClass} text-foreground/40`}>{project.client}</span>
-          </Link>
+      <div className="flex flex-col gap-8 md:hidden">
+        {mobileRows.map((group, gi) => (
+          <ProjectRow key={gi} group={group} cols="grid-cols-2" sizes="50vw" gap="gap-x-4" />
         ))}
       </div>
 
       <div className="hidden md:flex flex-col gap-12">
-        {rows.map((group, gi) => (
-          <div key={gi} className="grid grid-cols-4 gap-x-6">
-            {group.map((project) => (
-              <Link key={`img-${project.id}`} href={`/projects/${project.id}`} className="group self-end row-start-1">
-                <Image
-                  src={getLookbookImage(project)}
-                  alt={project.title}
-                  width={0}
-                  height={0}
-                  sizes="25vw"
-                  className="w-full h-auto transition-opacity duration-500 group-hover:opacity-80"
-                />
-              </Link>
-            ))}
-            {group.map((project) => (
-              <div key={`text-${project.id}`} className="row-start-2 pt-4 flex flex-col">
-                <span className={`${textClass} text-foreground`}>{project.title}</span>
-                <span className={`${textClass} text-foreground/40`}>{project.client}</span>
-              </div>
-            ))}
-          </div>
+        {desktopRows.map((group, gi) => (
+          <ProjectRow key={gi} group={group} cols="grid-cols-4" sizes="25vw" gap="gap-x-6" />
         ))}
       </div>
 
