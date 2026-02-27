@@ -21,7 +21,6 @@ export default function IncrementsPage() {
     return (
         <main className="fixed inset-0 overflow-y-auto bg-foreground text-background no-scrollbar">
 
-            {/* Intro — image left, text right */}
             <section className="min-h-[100dvh] md:h-[100dvh] relative">
                 <div className="w-full min-h-full md:h-full max-w-[1600px] mx-auto px-6 md:px-12 pt-28 pb-12 md:py-0 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
 
@@ -66,7 +65,6 @@ export default function IncrementsPage() {
                 </div>
             </section>
 
-            {/* 3 Increments projects — vol-3 to vol-1 */}
             {incrementsProjects.map((project) => (
                 <section
                     key={project.id}
