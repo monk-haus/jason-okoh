@@ -7,11 +7,12 @@ import { usePathname } from "next/navigation";
 import { useMenu } from "./menu-context";
 
 const stylingProjects = [
-  { id: "vol-4", title: "KidWild", client: "NME Magazine", image: "/assets/images/vol-four/vol-4-cover.webp" },
-  { id: "vol-3", title: "Dvany Cruz", client: "Increments Vol. 3", image: "/assets/images/vol-three/vol-3-cover.webp" },
-  { id: "vol-2", title: "Marcus Pancho", client: "Increments Vol. 2", image: "/assets/images/vol-two/vol-2-cover.webp" },
-  { id: "vol-5", title: "Goddy Q", client: "IGQWT", image: "/assets/images/vol-five/05-01.webp" },
-  { id: "vol-1", title: "Jason Okoh", client: "Increments Vol. 1", image: "/assets/images/vol-one/vol-1-cover.webp" },
+  { id: "vol-6", title: "Malick Thiaw", client: "Footballer Fits", image: "/assets/images/malick-thiaw/01.webp" },
+  { id: "vol-4", title: "KidWild", client: "NME Magazine", image: "/assets/images/kidwild/cover.webp" },
+  { id: "vol-3", title: "Dvany Cruz", client: "Increments Vol. 3", image: "/assets/images/dvany-cruz/cover.webp" },
+  { id: "vol-2", title: "Marcus Pancho", client: "Increments Vol. 2", image: "/assets/images/marcus-pancho/cover.webp" },
+  { id: "vol-5", title: "Goddy Q", client: "IGQWT", image: "/assets/images/goddy-q/01.webp" },
+  { id: "vol-1", title: "Jason Okoh", client: "Increments Vol. 1", image: "/assets/images/jason-okoh/cover.webp" },
 ];
 
 export default function StylingDropdown() {

@@ -9,7 +9,7 @@ import { projects } from "@/lib/projects";
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { menuOpen, preloaderDone } = useMenu();
+  const { menuOpen, preloaderDone, setHeroActive } = useMenu();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -18,10 +18,15 @@ export default function Home() {
     const handleScroll = () => {
       const index = Math.round(container.scrollTop / container.clientHeight);
       setCurrentIndex(index);
+      setHeroActive(index === 0);
     };
 
+    setHeroActive(true);
     container.addEventListener("scroll", handleScroll, { passive: true });
-    return () => container.removeEventListener("scroll", handleScroll);
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      setHeroActive(false);
+    };
   }, []);
 
   return (
@@ -30,6 +35,26 @@ export default function Home() {
       className={`h-[100dvh] snap-y snap-mandatory overflow-y-auto transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "md:translate-y-0 translate-y-[50vh]" : "translate-y-0"
         }`}
     >
+      {/* Hero section */}
+      <section className="relative h-[100dvh] snap-start overflow-hidden">
+        <video
+          src="/assets/images/goddy-q/vid-1.webm"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 flex items-center justify-end px-6 md:px-10 lg:px-16">
+          <div className="flex flex-col items-end gap-1">
+            <span className="font-mono text-white text-2xl md:text-3xl font-bold tracking-normal uppercase">Jason Okoh</span>
+            <span className="text-white/60 text-[9px] font-bold tracking-normal uppercase" style={{ fontFamily: "var(--font-pt-mono)" }}>Stylist & Director</span>
+            <span className="text-white/60 text-[9px] font-bold tracking-normal uppercase" style={{ fontFamily: "var(--font-pt-mono)" }}>London, UK</span>
+          </div>
+        </div>
+      </section>
+
       {projects.map((project, i) => (
         <section
           key={i}

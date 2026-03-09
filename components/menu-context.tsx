@@ -9,6 +9,8 @@ const MenuContext = createContext<{
   setStylingOpen: (open: boolean) => void;
   preloaderDone: boolean;
   setPreloaderDone: (done: boolean) => void;
+  heroActive: boolean;
+  setHeroActive: (active: boolean) => void;
 }>({
   menuOpen: false,
   setMenuOpen: () => {},
@@ -16,15 +18,18 @@ const MenuContext = createContext<{
   setStylingOpen: () => {},
   preloaderDone: false,
   setPreloaderDone: () => {},
+  heroActive: false,
+  setHeroActive: () => {},
 });
 
 export function MenuProvider({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [stylingOpen, setStylingOpen] = useState(false);
   const [preloaderDone, setPreloaderDone] = useState(false);
+  const [heroActive, setHeroActive] = useState(false);
   return (
     <MenuContext.Provider
-      value={{ menuOpen, setMenuOpen, stylingOpen, setStylingOpen, preloaderDone, setPreloaderDone }}
+      value={{ menuOpen, setMenuOpen, stylingOpen, setStylingOpen, preloaderDone, setPreloaderDone, heroActive, setHeroActive }}
     >
       {children}
     </MenuContext.Provider>

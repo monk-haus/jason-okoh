@@ -17,14 +17,15 @@ const allLinks = [
 ];
 
 export default function Header() {
-  const { menuOpen, setMenuOpen, stylingOpen, setStylingOpen, preloaderDone } = useMenu();
+  const { menuOpen, setMenuOpen, stylingOpen, setStylingOpen, preloaderDone, heroActive } = useMenu();
   const pathname = usePathname();
 
   const isDark = pathname === "/increments";
+  const isHero = heroActive && !menuOpen && !stylingOpen;
 
   const bgColor = isDark ? "bg-foreground" : "bg-background";
-  const textColor = isDark ? "text-background" : "text-foreground";
-  const washColor = isDark ? "text-background/40" : "text-wash";
+  const textColor = isDark ? "text-background" : isHero ? "text-white" : "text-foreground";
+  const washColor = isDark ? "text-background/40" : isHero ? "text-white/40" : "text-wash";
 
   const handleDesktopLinkClick = (label: string, e: React.MouseEvent) => {
     if (label === "Styling") {
@@ -63,32 +64,42 @@ export default function Header() {
         className={`md:hidden fixed inset-x-0 top-0 z-40 ${bgColor} overflow-hidden transition-[height,background-color] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "h-[50vh]" : "h-0"
           }`}
       >
-        <nav className="flex flex-col items-start gap-0 px-6 pt-6">
-          {allLinks.map((link, i) => {
-            const isActive = link.href === "/" ? pathname === "/" : pathname === link.href;
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleMobileLinkClick(link.label, e)}
-                className={`font-mono text-xl font-bold tracking-normal leading-tight transition-all hover:text-accent ${isActive ? washColor : textColor
-                  }`}
-                style={{
-                  transitionDuration: "600ms",
-                  transitionDelay: menuOpen ? `${i * 80}ms` : "0ms",
-                  opacity: menuOpen ? 1 : 0,
-                  transform: menuOpen ? "translateY(0)" : "translateY(-12px)",
-                }}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="flex flex-col px-6 pt-6 pb-20 h-full">
+          <nav className="flex flex-col items-start gap-0">
+            {allLinks.map((link, i) => {
+              const isActive = link.href === "/" ? pathname === "/" : pathname === link.href;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleMobileLinkClick(link.label, e)}
+                  className={`font-mono text-xl font-bold tracking-normal leading-tight transition-all hover:text-accent ${isActive ? washColor : textColor
+                    }`}
+                  style={{
+                    transitionDuration: "600ms",
+                    transitionDelay: menuOpen ? `${i * 80}ms` : "0ms",
+                    opacity: menuOpen ? 1 : 0,
+                    transform: menuOpen ? "translateY(0)" : "translateY(-12px)",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div
+            className={`mt-auto grid grid-cols-[1fr_auto_1fr] gap-4 items-center font-mono text-[9px] font-bold tracking-normal ${isDark ? "text-background/40" : "text-foreground/40"}`}
+            style={{ opacity: menuOpen ? 1 : 0, transitionDuration: "600ms" }}
+          >
+            <span>jaseokoh@gmail.com</span>
+            <span>|</span>
+            <span className="text-right">London, UK</span>
+          </div>
+        </div>
       </div>
 
       <header
-        className={`fixed left-0 w-full z-50 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] md:bg-transparent ${menuOpen ? bgColor : isDark ? "bg-transparent" : "bg-background"
+        className={`fixed left-0 w-full z-50 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] md:bg-transparent ${menuOpen ? bgColor : isDark ? "bg-transparent" : isHero ? "bg-transparent" : "bg-background"
           } ${menuOpen
             ? "top-[50vh] -translate-y-full md:top-0 md:translate-y-0"
             : "top-0 translate-y-0"

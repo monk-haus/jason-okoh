@@ -31,7 +31,7 @@ export default function IncrementsPage() {
                         className="relative w-full h-[50vh] md:h-[75vh]"
                     >
                         <Image
-                            src="/assets/images/vol-three/vol-3-cover.webp"
+                            src="/assets/images/dvany-cruz/cover.webp"
                             alt="Increments Vol. 3"
                             fill
                             className="object-contain object-left md:object-center"

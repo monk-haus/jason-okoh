@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { PT_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import StylingDropdown from "@/components/styling-dropdown";
 import Preloader from "@/components/preloader";
 import { MenuProvider } from "@/components/menu-context";
+
+const ptMono = PT_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-pt-mono",
+});
 
 const nimbusSans = localFont({
   src: [
@@ -29,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nimbusSans.variable} antialiased`}
+        className={`${nimbusSans.variable} ${ptMono.variable} antialiased`}
       >
         <MenuProvider>
           <Preloader />
