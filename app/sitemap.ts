@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
 
+export const dynamic = "force-static";
+
 const baseUrl = "https://jasonokoh.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
