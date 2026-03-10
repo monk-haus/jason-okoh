@@ -61,11 +61,13 @@ export default function Header() {
   return (
     <>
       <div
+        id="mobile-menu"
+        aria-hidden={!menuOpen}
         className={`md:hidden fixed inset-x-0 top-0 z-40 ${bgColor} overflow-hidden transition-[height,background-color] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "h-[50vh]" : "h-0"
           }`}
       >
         <div className="flex flex-col px-6 pt-6 pb-20 h-full">
-          <nav className="flex flex-col items-start gap-0">
+          <nav aria-label="Mobile navigation" className="flex flex-col items-start gap-0">
             {allLinks.map((link, i) => {
               const isActive = link.href === "/" ? pathname === "/" : pathname === link.href;
               return (
@@ -106,7 +108,7 @@ export default function Header() {
           }`}
       >
         <div className="flex items-center justify-between px-6 py-5 md:px-10 lg:px-16">
-          <div className="hidden md:flex items-center justify-between w-full">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center justify-between w-full">
             {allLinks.map((link, i) => {
               const isNav = link.label !== "Jason Okoh";
               return (
@@ -133,7 +135,7 @@ export default function Header() {
                 </Link>
               );
             })}
-          </div>
+          </nav>
 
           <Link
             href="/"
@@ -144,12 +146,14 @@ export default function Header() {
           </Link>
           <button
             onClick={handleMenuToggle}
-            className={`md:hidden font-mono text-[9px] font-bold tracking-normal transition-all duration-600 hover:text-accent ${textColor}`}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className={`md:hidden font-mono text-[9px] font-bold tracking-normal transition-all duration-[600ms] hover:text-accent ${textColor}`}
             style={{
               opacity: preloaderDone ? 1 : 0,
               transform: preloaderDone ? "translateY(0)" : "translateY(-8px)",
             }}
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
           >
             {menuOpen ? "Close" : "Menu"}
           </button>

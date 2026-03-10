@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useMenu } from "@/components/menu-context";
 import { projects } from "@/lib/projects";
 
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const { menuOpen, preloaderDone, setHeroActive } = useMenu();
 
   useEffect(() => {
@@ -17,7 +17,6 @@ export default function Home() {
 
     const handleScroll = () => {
       const index = Math.round(container.scrollTop / container.clientHeight);
-      setCurrentIndex(index);
       setHeroActive(index === 0);
     };
 
@@ -27,22 +26,30 @@ export default function Home() {
       container.removeEventListener("scroll", handleScroll);
       setHeroActive(false);
     };
-  }, []);
+  }, [setHeroActive]);
+
+  useEffect(() => {
+    if (preloaderDone && heroVideoRef.current) {
+      heroVideoRef.current.play();
+    }
+  }, [preloaderDone]);
 
   return (
     <main
+      id="main-content"
       ref={containerRef}
       className={`h-[100dvh] snap-y snap-mandatory overflow-y-auto transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "md:translate-y-0 translate-y-[50vh]" : "translate-y-0"
         }`}
     >
-      {/* Hero section */}
-      <section className="relative h-[100dvh] snap-start overflow-hidden">
+      <section className="relative h-[100dvh] snap-start overflow-hidden bg-black">
         <video
+          ref={heroVideoRef}
           src="/assets/images/goddy-q/vid-1.webm"
-          autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
+          aria-label="Hero background video"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/55" />
@@ -57,7 +64,7 @@ export default function Home() {
 
       {projects.map((project, i) => (
         <section
-          key={i}
+          key={project.id}
           className="relative h-[100dvh] snap-start flex flex-col pt-16 pb-6 gap-6"
         >
           <div
@@ -103,6 +110,7 @@ export default function Home() {
             </h2>
             <Link
               href={`/projects/${project.id}`}
+              aria-label={`View ${project.title} for ${project.client}`}
               className="font-mono text-[9px] font-bold tracking-normal uppercase text-foreground/40 transition-colors hover:text-accent"
             >
               View
