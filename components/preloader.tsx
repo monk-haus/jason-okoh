@@ -42,7 +42,7 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-background flex items-center justify-between px-6 md:px-10 lg:px-16 transition-all duration-[800ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${exiting ? "opacity-0 -translate-y-full" : "opacity-100 translate-y-0"
+      className={`fixed inset-0 z-[100] bg-background flex items-center justify-between px-6 md:px-10 lg:px-16 transition-transform duration-[800ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${exiting ? "-translate-y-full" : "translate-y-0"
         }`}
     >
       <div className="flex flex-col items-start gap-1">
